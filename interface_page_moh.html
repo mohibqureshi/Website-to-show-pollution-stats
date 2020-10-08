@@ -1,0 +1,199 @@
+<html>
+<head>
+<title> data analysis </title>
+
+</head>
+<body>
+
+<style type="text/css">
+body{
+  background-image: url("https://wallpaperplay.com/walls/full/2/5/1/14019.jpg");
+}
+	form{
+		margin: auto;
+		padding-top: 200px;
+		padding-left: 450px; 
+		position: absolute;
+		left: 80px;
+		font-size: 30px;
+	}
+	input,select{
+		border-radius: 5px;
+		border-color: black;
+		background-color: rgb(192, 241, 235);
+		padding-left: 5px;
+		margin-left: 5px;
+		height: 35px;
+		font-size: 20px;
+	}
+	div{
+		margin-top: 10px;
+	}
+	button
+	{
+		border-radius: 5px;
+		height: 35px;
+    font-size: 20px;
+    background-color:rgb(192, 241, 235);
+  }
+  button:hover{
+    background-color: rgb(28, 155, 140);
+  }
+	input.checkmark{
+		margin:10px;
+		height: 20px;
+		width: 20px;
+	}
+
+	.invalid {
+		color: red;	
+	}
+	.invalid:before {
+        position: relative;
+        left: -35px;
+        content: "✖";
+      }
+
+	.valid{
+		color:green;
+	}
+
+	.valid:before {
+        position: relative;
+        left: -35px;
+        content: "✔";
+      }
+	#message1 {
+    display: none;
+        padding: 10px 35px;
+        font-size: 18px;
+      }
+	  #message1 {
+		  display: none;
+        padding: 10px 35px;
+        font-size: 18px;
+      }
+	  #message2 {
+		  display: none;
+        padding: 10px 35px;
+        font-size: 18px;
+      }
+      /* .rahul{
+        background-color: lightblue;
+        margin-block: 50px;
+        
+        
+      }
+      .abhi{
+        margin-left: 700px;
+        margin-block: 50px;
+      } */
+
+	  
+</style>
+<div class="rahul">
+  <div class="abhi">
+<form action = "interface_php_moh.php" method="POST">
+<div>From:<input style="margin-left: 7.5em;" type = "text" 
+	name = "from" 
+	id="fromdt" 
+	pattern="^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$" 
+	placeholder = "yyyy-mm-dd" required></div>
+<p id="message1" class = "invalid"><b>Please enter valid date!</b></p>
+<br>
+<div >To:  <input style="margin-left: 9.2em;" type = "text" 
+	name = "to" 
+	pattern="^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$" 
+	id = "todt"
+	placeholder = "yyyy-mm-dd" 
+	required>
+	<!-- "^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$"  -->
+<p id="message2" class = "invalid"><b>Please enter valid date!</b></p>
+<br>
+<br>
+<div >Temperature:
+<select style="margin-left: 1.15em;" name ='field'>
+<option value = "t">Temperature</option>
+<option value = "co">CO concentration</option>
+<option value = "h">Humidity</option>
+<option value = "no2">NO2 concentration</option>
+<option value = "o3">O3 concentration</option>
+<option value = "p">Pressure</option>
+
+<option value = "pm_10">Particulate Matter(<=10 micrometers)</option>
+<option value = "pm_1_0">Particulate Matter(<=1 micrometers)</option>
+<option value = "pm_2_5">Particulate Matter(<=2.5 micrometers)</option>
+<option value = "so2">SO2 concentration</option>
+
+<option value = "ws">Wind Speed</option>
+</select>
+<br>
+<br>
+    </div>
+<label>Minimum:<input type = "checkbox" name = "mn" value="minimum" class="checkmark"></label>
+<label>Maximum: <input type = "checkbox" name = "mx" value="maximum" class="checkmark"></label>
+<label>Average: <input type = "checkbox" name = "ag" value="average" class="checkmark"></span></label>
+<br>
+<br>
+<button type = submit name="submit" > Submit Query</button><br>
+</form>
+  </div>
+</div>
+<script>
+var myInput = document.getElementById("fromdt");
+      var myInput1 = document.getElementById("todt");
+      var letter = document.getElementById("message1");
+
+      // When the user clicks on the password field, show the message1 box
+      myInput.onfocus = function() {
+        document.getElementById("message1").style.display = "block";
+      };
+
+      // When the user clicks outside of the password field, hide the message1 box
+      //myInput.onblur = function() {
+      //document.getElementById("message1").style.display = "none";
+      //};
+
+      // When the user starts to type something inside the password field
+      myInput.onkeyup = function() {
+        // Validate lowercase letters
+        var dt = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/g;
+        if (myInput.value.match(dt)) {
+          letter.classList.remove("invalid");
+          letter.classList.add("valid");
+          letter.innerHTML = "Valid!";
+        } else {
+          letter.classList.remove("valid");
+          letter.classList.add("invalid");
+          letter.innerHTML = "Please enter a valid date!";
+        }
+      };
+
+
+	  var letter1 = document.getElementById("message2");
+	  myInput1.onfocus = function() {
+        document.getElementById("message2").style.display = "block";
+      };
+
+      // When the user clicks outside of the password field, hide the message1 box
+      //myInput1.onblur = function() {
+      //document.getElementById("message1").style.display = "none";
+      //};
+
+      // When the user starts to type something inside the password field
+      myInput1.onkeyup = function() {
+        // Validate lowercase letters
+        var dt = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/g;
+        if (myInput1.value.match(dt)) {
+          letter1.classList.remove("invalid");
+          letter1.classList.add("valid");
+          letter1.innerHTML = "Valid!";
+        } else {
+          letter1.classList.remove("valid");
+          letter1.classList.add("invalid");
+          letter1.innerHTML = "Please enter a valid date!";
+        }
+      };
+	</script>
+</body>
+</html>
